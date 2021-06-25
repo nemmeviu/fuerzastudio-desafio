@@ -11,6 +11,9 @@ services:
       - WORDPRESS_DB_USER=wp
       - WORDPRESS_DB_PASSWORD=fuerzastudio
       - WORDPRESS_DB_NAME=wp
+      - WORDPRESS_CONFIG_EXTRA: |
+          # Require SSL for admin and logins
+          define( 'FORCE_SSL_ADMIN', true );      
     volumes:
       - wordpress:/var/www/html
     networks:
