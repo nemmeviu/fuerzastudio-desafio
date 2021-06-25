@@ -7,10 +7,10 @@ services:
     container_name: wordpress
     restart: unless-stopped
     environment:
-      WORDPRESS_DB_HOST=wp-mysql.cs7yqsma9l6a.us-east-2.rds.amazonaws.com:3306
-      WORDPRESS_DB_USER=wp
-      WORDPRESS_DB_PASSWORD=fuerzastudio
-      WORDPRESS_DB_NAME=wp
+      WORDPRESS_DB_HOST: wp-mysql.cs7yqsma9l6a.us-east-2.rds.amazonaws.com:3306
+      WORDPRESS_DB_USER: wp
+      WORDPRESS_DB_PASSWORD: fuerzastudio
+      WORDPRESS_DB_NAME: wp
       WORDPRESS_CONFIG_EXTRA: |
         # Require SSL for admin and logins
         define( 'FORCE_SSL_ADMIN', true );      
