@@ -1,4 +1,4 @@
-version: '3'
+version: '4'
 
 services:
   
@@ -6,16 +6,16 @@ services:
     image: wordpress:php7.4-apache
     container_name: wordpress
     restart: unless-stopped
-    env_file: .env
     environment:
-      - WORDPRESS_DB_HOST=db:3306
+      - WORDPRESS_DB_HOST=wp-mysql.cs7yqsma9l6a.us-east-2.rds.amazonaws.com:3306
       - WORDPRESS_DB_USER=wp
       - WORDPRESS_DB_PASSWORD=fuerzastudio
       - WORDPRESS_DB_NAME=wp
     volumes:
       - wordpress:/var/www/html
     networks:
-      - app-network
+      app-network:
+        ipv4_address: 10.5.0.3
 
   webserver:
     depends_on:
@@ -30,7 +30,8 @@ services:
       - ./nginx-conf:/etc/nginx/conf.d
       #- certbot-etc:/etc/letsencrypt
     networks:
-      - app-network
+      app-network:
+        ipv4_address: 10.5.0.2
 
   # certbot:
   #   depends_on:
@@ -49,3 +50,7 @@ volumes:
 networks:
   app-network:
     driver: bridge
+    ipam:
+      config:
+        - subnet: 10.5.0.0/16
+          gateway: 10.5.0.1
