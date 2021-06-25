@@ -28,7 +28,7 @@ services:
     volumes:
       - wordpress:/var/www/html
       - ./nginx-conf:/etc/nginx/conf.d
-      - ./nginx-ssl:/etc/certs/invalid-certs
+      - ./nginx-ssl:/etc/ssl/invalid-certs
       #- certbot-etc:/etc/letsencrypt
     networks:
       app-network:
